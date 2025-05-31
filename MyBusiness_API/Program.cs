@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using MyBusiness_API;
 using MyBusiness_DB;
 
 internal class Program
@@ -16,6 +17,8 @@ internal class Program
         builder.Services.AddDbContext<BusinessContext>(options =>
             options.UseNpgsql(builder.Configuration.GetConnectionString("BusinessConnection"))
         );
+
+        builder.Services.AddAutoMapper(typeof(MappingConfig));
 
         var app = builder.Build();
         

@@ -104,3 +104,4 @@ D:\ILICH.NODA\DESARROLLO\RiderProjects\MyBusiness\MyBusiness_API\obj\Debug\net8.
 D:\ILICH.NODA\DESARROLLO\RiderProjects\MyBusiness\MyBusiness_API\obj\Debug\net8.0\MyBusiness_API.pdb
 D:\ILICH.NODA\DESARROLLO\RiderProjects\MyBusiness\MyBusiness_API\obj\Debug\net8.0\MyBusiness_API.genruntimeconfig.cache
 D:\ILICH.NODA\DESARROLLO\RiderProjects\MyBusiness\MyBusiness_API\obj\Debug\net8.0\ref\MyBusiness_API.dll
+D:\ILICH.NODA\DESARROLLO\RiderProjects\MyBusiness\MyBusiness_API\obj\Debug\net8.0\MyBusiness_API.sourcelink.json

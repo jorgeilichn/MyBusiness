@@ -19,7 +19,7 @@ namespace MyBusiness_API.Controllers
         
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ProductByOrder>>> GetProductByOrder() =>
-            await _context.ProductByOrders.OrderBy(po => po.ProductID).ToListAsync();
+            await _context.ProductByOrders.ToListAsync();
         
         [HttpGet("{id}")]
         public async Task<ActionResult<ProductByOrder>> GetProductByOrder(int id)

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MyBusiness_DB;
 using MyBusiness_DB.DataTransferObjects;
@@ -11,15 +12,17 @@ namespace MyBusiness_API.Controllers
     public class ProductController : ControllerBase
     {
         private BusinessContext _context;
+        private IMapper _mapper;    
 
-        public ProductController(BusinessContext context)
+        public ProductController(BusinessContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Product>>> GetProduct() =>
-            await _context.Products.OrderBy(p => p.ProductID).ToListAsync();
+            _mapper.Map<ActionResult<IEnumerable<Product>>>(await _context.Products.OrderBy(p => p.ProductID).ToListAsync()) ;
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Product>> GetProduct(int id)
@@ -29,23 +32,14 @@ namespace MyBusiness_API.Controllers
             if (product == null)
                 return NotFound();
 
-            return Ok(product);
+            return Ok(_mapper.Map<Product>(product));
         }
 
         [HttpPost]
         public async Task<ActionResult<Product>> PostProduct(ProductDto product)
         {
-            var _product = new Product()
-            {
-                ProductName = product.ProductName,
-                BrandID = product.BrandID,
-                ProductDescription = product.ProductDescription,
-                ProductPrice = product.ProductPrice,
-                ProductImage = product.ProductImage,
-                UnitOfMeasurementID = product.UnitOfMeasurementID,
-                ProductActive = product.ProductActive
-            };
-
+            var _product = _mapper.Map<Product>(product);  
+            
             _context.Products.Add(_product);
             await _context.SaveChangesAsync();
 
@@ -60,14 +54,9 @@ namespace MyBusiness_API.Controllers
             if (_product == null)
                 return NotFound();
             
-            _product.ProductName = product.ProductName;
-            _product.BrandID = product.BrandID;
-            _product.ProductDescription = product.ProductDescription;
-            _product.ProductPrice = product.ProductPrice;
-            _product.ProductImage = product.ProductImage;
-            _product.UnitOfMeasurementID = product.UnitOfMeasurementID;
-            _product.ProductActive = product.ProductActive;
-
+            _product = _mapper.Map<Product>(product);
+            
+            _context.Products.Update(_product);
             try
             {
                 await _context.SaveChangesAsync();

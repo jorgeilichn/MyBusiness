@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MyBusiness_DB;
 using MyBusiness_DB.DataTransferObjects;
@@ -11,15 +12,17 @@ namespace MyBusiness_API.Controllers
     public class OrderController : ControllerBase
     {
         private BusinessContext _context;
+        private IMapper _mapper;    
 
-        public OrderController(BusinessContext context)
+        public OrderController(BusinessContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;   
         }
         
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Order>>> GetOrder() =>
-            await _context.Orders.OrderBy(o => o.OrderId).ToListAsync();
+            _mapper.Map<ActionResult<IEnumerable<Order>>>(await _context.Orders.OrderBy(o => o.OrderId).ToListAsync()) ;
         
         [HttpGet("{id}")]
         public async Task<ActionResult<Order>> GetOrder(int id)
@@ -29,17 +32,13 @@ namespace MyBusiness_API.Controllers
             if (order == null)
                 return NotFound();
 
-            return Ok(order);
+            return Ok(_mapper.Map<Order>(order));
         }
 
         [HttpPost]
         public async Task<ActionResult<Order>> PostOrder(OrderDto order)
         {
-            var _order = new Order()
-            {
-                CustomerName = order.CustomerName,
-                OrderStatus = order.OrderStatus,
-            };
+            var _order = _mapper.Map<Order>(order);
 
             _context.Orders.Add(_order);
             await _context.SaveChangesAsync();
@@ -55,9 +54,9 @@ namespace MyBusiness_API.Controllers
             if (_order == null)
                 return NotFound();
             
-            _order.CustomerName = order.CustomerName;
-            _order.OrderStatus = order.OrderStatus;
-
+            _order = _mapper.Map<Order>(order);
+            
+            _context.Orders.Update(_order); 
             try
             {
                 await _context.SaveChangesAsync();

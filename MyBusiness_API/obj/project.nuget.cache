@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "/Cvdqg8Avx8=",
+  "dgSpecHash": "tpGVJcU5aRQ=",
   "success": true,
   "projectFilePath": "D:\\ILICH.NODA\\DESARROLLO\\RiderProjects\\MyBusiness\\MyBusiness_API\\MyBusiness_API.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\ilich.noda\\.nuget\\packages\\automapper\\14.0.0\\automapper.14.0.0.nupkg.sha512",
     "C:\\Users\\ilich.noda\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\ilich.noda\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\6.0.0\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
     "C:\\Users\\ilich.noda\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\3.3.3\\microsoft.codeanalysis.analyzers.3.3.3.nupkg.sha512",
