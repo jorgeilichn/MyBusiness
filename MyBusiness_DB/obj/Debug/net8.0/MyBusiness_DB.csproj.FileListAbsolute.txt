@@ -1,0 +1,14 @@
+D:\ILICH.NODA\DESARROLLO\RiderProjects\MyBusiness\MyBusiness_DB\bin\Debug\net8.0\MyBusiness_DB.deps.json
+D:\ILICH.NODA\DESARROLLO\RiderProjects\MyBusiness\MyBusiness_DB\bin\Debug\net8.0\MyBusiness_DB.runtimeconfig.json
+D:\ILICH.NODA\DESARROLLO\RiderProjects\MyBusiness\MyBusiness_DB\bin\Debug\net8.0\MyBusiness_DB.dll
+D:\ILICH.NODA\DESARROLLO\RiderProjects\MyBusiness\MyBusiness_DB\bin\Debug\net8.0\MyBusiness_DB.pdb
+D:\ILICH.NODA\DESARROLLO\RiderProjects\MyBusiness\MyBusiness_DB\obj\Debug\net8.0\MyBusiness_DB.csproj.AssemblyReference.cache
+D:\ILICH.NODA\DESARROLLO\RiderProjects\MyBusiness\MyBusiness_DB\obj\Debug\net8.0\MyBusiness_DB.GeneratedMSBuildEditorConfig.editorconfig
+D:\ILICH.NODA\DESARROLLO\RiderProjects\MyBusiness\MyBusiness_DB\obj\Debug\net8.0\MyBusiness_DB.AssemblyInfoInputs.cache
+D:\ILICH.NODA\DESARROLLO\RiderProjects\MyBusiness\MyBusiness_DB\obj\Debug\net8.0\MyBusiness_DB.AssemblyInfo.cs
+D:\ILICH.NODA\DESARROLLO\RiderProjects\MyBusiness\MyBusiness_DB\obj\Debug\net8.0\MyBusiness_DB.csproj.CoreCompileInputs.cache
+D:\ILICH.NODA\DESARROLLO\RiderProjects\MyBusiness\MyBusiness_DB\obj\Debug\net8.0\MyBusiness_DB.dll
+D:\ILICH.NODA\DESARROLLO\RiderProjects\MyBusiness\MyBusiness_DB\obj\Debug\net8.0\refint\MyBusiness_DB.dll
+D:\ILICH.NODA\DESARROLLO\RiderProjects\MyBusiness\MyBusiness_DB\obj\Debug\net8.0\MyBusiness_DB.pdb
+D:\ILICH.NODA\DESARROLLO\RiderProjects\MyBusiness\MyBusiness_DB\obj\Debug\net8.0\MyBusiness_DB.genruntimeconfig.cache
+D:\ILICH.NODA\DESARROLLO\RiderProjects\MyBusiness\MyBusiness_DB\obj\Debug\net8.0\ref\MyBusiness_DB.dll
