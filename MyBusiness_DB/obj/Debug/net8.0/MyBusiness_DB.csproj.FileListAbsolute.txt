@@ -12,3 +12,4 @@ D:\ILICH.NODA\DESARROLLO\RiderProjects\MyBusiness\MyBusiness_DB\obj\Debug\net8.0
 D:\ILICH.NODA\DESARROLLO\RiderProjects\MyBusiness\MyBusiness_DB\obj\Debug\net8.0\MyBusiness_DB.pdb
 D:\ILICH.NODA\DESARROLLO\RiderProjects\MyBusiness\MyBusiness_DB\obj\Debug\net8.0\MyBusiness_DB.genruntimeconfig.cache
 D:\ILICH.NODA\DESARROLLO\RiderProjects\MyBusiness\MyBusiness_DB\obj\Debug\net8.0\ref\MyBusiness_DB.dll
+D:\ILICH.NODA\DESARROLLO\RiderProjects\MyBusiness\MyBusiness_DB\obj\Debug\net8.0\MyBusiness_DB.sourcelink.json

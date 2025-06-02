@@ -105,3 +105,4 @@ D:\ILICH.NODA\DESARROLLO\RiderProjects\MyBusiness\MyBusiness_API\obj\Debug\net8.
 D:\ILICH.NODA\DESARROLLO\RiderProjects\MyBusiness\MyBusiness_API\obj\Debug\net8.0\MyBusiness_API.genruntimeconfig.cache
 D:\ILICH.NODA\DESARROLLO\RiderProjects\MyBusiness\MyBusiness_API\obj\Debug\net8.0\ref\MyBusiness_API.dll
 D:\ILICH.NODA\DESARROLLO\RiderProjects\MyBusiness\MyBusiness_API\obj\Debug\net8.0\MyBusiness_API.sourcelink.json
+D:\ILICH.NODA\DESARROLLO\RiderProjects\MyBusiness\MyBusiness_API\bin\Debug\net8.0\AutoMapper.dll
