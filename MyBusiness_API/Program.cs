@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using MyBusiness_API;
 using MyBusiness_DB;
+using MyBusiness_DB.Repositories;
 
 internal class Program
 {
@@ -19,6 +20,8 @@ internal class Program
         );
 
         builder.Services.AddAutoMapper(typeof(MappingConfig));
+
+        builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
         var app = builder.Build();
         

@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using MyBusiness_DB;
 using MyBusiness_DB.DataTransferObjects;
 using MyBusiness_DB.Models;
+using MyBusiness_DB.Repositories;
 
 namespace MyBusiness_API.Controllers
 {
@@ -11,10 +12,10 @@ namespace MyBusiness_API.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        private BusinessContext _context;
+        private IProductRepository _context;
         private IMapper _mapper;    
 
-        public ProductController(BusinessContext context, IMapper mapper)
+        public ProductController(IProductRepository context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
@@ -22,12 +23,12 @@ namespace MyBusiness_API.Controllers
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Product>>> GetProduct() =>
-            _mapper.Map<ActionResult<IEnumerable<Product>>>(await _context.Products.OrderBy(p => p.ProductID).ToListAsync()) ;
+            _mapper.Map<ActionResult<IEnumerable<Product>>>(await _context.GetAll());
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
-            var product = await _context.Products.FindAsync(id);
+            var product = await _context.Get(p => p.ProductID == id);
 
             if (product == null)
                 return NotFound();
@@ -40,8 +41,7 @@ namespace MyBusiness_API.Controllers
         {
             var _product = _mapper.Map<Product>(product);  
             
-            _context.Products.Add(_product);
-            await _context.SaveChangesAsync();
+            await _context.Add(_product);
 
             return CreatedAtAction("GetProduct", new { id = _product.ProductID }, _product);
         }
@@ -49,17 +49,16 @@ namespace MyBusiness_API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutProduct(int id, ProductDto product)
         {
-            var _product = await _context.Products.FindAsync(id);
+            var _product = await _context.Get(p => p.ProductID == id);
 
             if (_product == null)
                 return NotFound();
             
             _product = _mapper.Map<Product>(product);
             
-            _context.Products.Update(_product);
             try
             {
-                await _context.SaveChangesAsync();
+                _context.Update(_product);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -72,13 +71,12 @@ namespace MyBusiness_API.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Product>> DeleteProduct(int id)
         {
-            var _product = await _context.Products.FindAsync(id);
+            var _product = await _context.Get(p => p.ProductID == id);
             
             if (_product == null)
                 return NotFound();
             
-            _context.Products.Remove(_product);
-            await _context.SaveChangesAsync();
+            _context.Remove(_product);
             
             return _product;
         }

@@ -8,7 +8,6 @@
     ".NETCoreApp,Version=v8.0": {
       "MyBusiness_API/1.0.0": {
         "dependencies": {
-          "AutoMapper": "14.0.0",
           "Microsoft.EntityFrameworkCore.Tools": "8.0.0",
           "MyBusiness_DB": "1.0.0",
           "Swashbuckle.AspNetCore": "6.4.0"
@@ -553,6 +552,7 @@
       "System.Threading.Channels/6.0.0": {},
       "MyBusiness_DB/1.0.0": {
         "dependencies": {
+          "AutoMapper": "14.0.0",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "8.0.0"
         },
         "runtime": {

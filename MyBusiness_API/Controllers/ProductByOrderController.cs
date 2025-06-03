@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MyBusiness_DB;
 using MyBusiness_DB.DataTransferObjects;
@@ -11,15 +12,17 @@ namespace MyBusiness_API.Controllers
     public class ProductByOrderController : ControllerBase
     {
         private BusinessContext _context;
+        private IMapper _mapper;
 
-        public ProductByOrderController(BusinessContext context)
+        public ProductByOrderController(BusinessContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
         
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ProductByOrder>>> GetProductByOrder() =>
-            await _context.ProductByOrders.ToListAsync();
+            _mapper.Map<ActionResult<IEnumerable<ProductByOrder>>>(await _context.ProductByOrders.ToListAsync());
         
         [HttpGet("{id}")]
         public async Task<ActionResult<ProductByOrder>> GetProductByOrder(int id)
@@ -29,19 +32,13 @@ namespace MyBusiness_API.Controllers
             if (productByOrder == null)
                 return NotFound();
 
-            return Ok(productByOrder);
+            return Ok(_mapper.Map<ProductByOrder>(productByOrder));
         }
 
         [HttpPost]
         public async Task<ActionResult<ProductByOrder>> PostProductByOrder(ProductByOrderDto productByOrder)
         {
-            var _productByOrder = new ProductByOrder()
-            {
-                ProductID = productByOrder.ProductID,
-                OrderID = productByOrder.OrderID,
-                Quantity = productByOrder.Quantity,
-                ProductByOrderActive = productByOrder.ProductByOrderActive,
-            };
+            var _productByOrder = _mapper.Map<ProductByOrder>(productByOrder);
 
             _context.ProductByOrders.Add(_productByOrder);
             await _context.SaveChangesAsync();
@@ -57,11 +54,9 @@ namespace MyBusiness_API.Controllers
             if (_productByOrder == null)
                 return NotFound();
             
-            _productByOrder.ProductID = productByOrder.ProductID;
-            _productByOrder.OrderID = productByOrder.OrderID;
-            _productByOrder.Quantity = productByOrder.Quantity;
-            _productByOrder.ProductByOrderActive = productByOrder.ProductByOrderActive;
+            _productByOrder = _mapper.Map<ProductByOrder>(productByOrder);
 
+            _context.ProductByOrders.Update(_productByOrder);
             try
             {
                 await _context.SaveChangesAsync();
