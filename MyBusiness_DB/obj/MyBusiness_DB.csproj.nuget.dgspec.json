@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ILICH.NODA\\DESARROLLO\\RiderProjects\\MyBusiness\\MyBusiness_DB\\MyBusiness_DB.csproj": {}
+    "D:\\JORGE.NODA\\DESARROLLO\\RiderProjects\\MyBusiness\\MyBusiness_DB\\MyBusiness_DB.csproj": {}
   },
   "projects": {
-    "D:\\ILICH.NODA\\DESARROLLO\\RiderProjects\\MyBusiness\\MyBusiness_DB\\MyBusiness_DB.csproj": {
+    "D:\\JORGE.NODA\\DESARROLLO\\RiderProjects\\MyBusiness\\MyBusiness_DB\\MyBusiness_DB.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ILICH.NODA\\DESARROLLO\\RiderProjects\\MyBusiness\\MyBusiness_DB\\MyBusiness_DB.csproj",
+        "projectUniqueName": "D:\\JORGE.NODA\\DESARROLLO\\RiderProjects\\MyBusiness\\MyBusiness_DB\\MyBusiness_DB.csproj",
         "projectName": "MyBusiness_DB",
-        "projectPath": "D:\\ILICH.NODA\\DESARROLLO\\RiderProjects\\MyBusiness\\MyBusiness_DB\\MyBusiness_DB.csproj",
-        "packagesPath": "C:\\Users\\ilich.noda\\.nuget\\packages\\",
-        "outputPath": "D:\\ILICH.NODA\\DESARROLLO\\RiderProjects\\MyBusiness\\MyBusiness_DB\\obj\\",
+        "projectPath": "D:\\JORGE.NODA\\DESARROLLO\\RiderProjects\\MyBusiness\\MyBusiness_DB\\MyBusiness_DB.csproj",
+        "packagesPath": "C:\\Users\\jorge.noda\\.nuget\\packages\\",
+        "outputPath": "D:\\JORGE.NODA\\DESARROLLO\\RiderProjects\\MyBusiness\\MyBusiness_DB\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ilich.noda\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\jorge.noda\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
