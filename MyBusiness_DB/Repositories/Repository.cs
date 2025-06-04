@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using System.Data;
+using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 
 namespace MyBusiness_DB.Repositories
@@ -51,7 +52,14 @@ namespace MyBusiness_DB.Repositories
 
         public async Task SaveChanges()
         {
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException exception)
+            {
+                throw new DBConcurrencyException(exception.Message);
+            }
         }
     
     }

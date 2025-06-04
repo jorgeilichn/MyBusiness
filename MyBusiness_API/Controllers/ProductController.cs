@@ -56,14 +56,7 @@ namespace MyBusiness_API.Controllers
             
             _product = _mapper.Map<Product>(product);
             
-            try
-            {
-                _context.Update(_product);
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                return Conflict();
-            }
+            _context.Update(_product);
 
             return NoContent();
         }
