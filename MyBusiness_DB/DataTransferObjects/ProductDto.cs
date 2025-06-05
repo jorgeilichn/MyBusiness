@@ -16,6 +16,8 @@ namespace MyBusiness_DB.DataTransferObjects
         public string ProductImage { get; set; }
     
         public int UnitOfMeasurementID { get; set; }
+        
+        public double InStockQuantity { get; set; }
     
         public bool ProductActive { get; set; }
     }

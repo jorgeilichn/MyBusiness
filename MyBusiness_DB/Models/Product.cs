@@ -24,6 +24,8 @@ namespace MyBusiness_DB.Models
         
         public int UnitOfMeasurementID { get; set; }
         
+        public double InStockQuantity { get; set; }
+        
         public bool ProductActive { get; set; }
 
         public ICollection<Order> Orders { get; } = [];
