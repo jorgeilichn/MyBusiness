@@ -39,7 +39,7 @@ namespace MyBusiness_API.Controllers
             catch (Exception ex)
             {
                 _response.IsSuccess = false;
-                _response.ErrorMessages = new List<string>() { ex.Message };
+                _response.ErrorMessages = new List<string>() { ex.ToString() };
             }
             
             return _response;
