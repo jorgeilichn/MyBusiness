@@ -1,0 +1,1 @@
+Aplicación para modelar un sistema de ventas al estilo de un almacén. Está desarrollado con el paradigma de CodeFirst y se ejemplifican relaciones entre entidades de uno-a-varios, varios-a-varios y su gestión..
