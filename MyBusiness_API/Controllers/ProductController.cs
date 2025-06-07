@@ -1,7 +1,8 @@
 ﻿using System.Net;
 using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using MyBusiness_DB;
 using MyBusiness_DB.DataTransferObjects;
 using MyBusiness_DB.Models;
@@ -13,14 +14,16 @@ namespace MyBusiness_API.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        private IProductRepository _context;
+        private BusinessContext _context;
         private IMapper _mapper;
+        private IProductRepository _productRepository;
         protected APIResponse _response;
 
-        public ProductController(IProductRepository context, IMapper mapper)
+        public ProductController(BusinessContext context, IMapper mapper, IProductRepository productRepository)
         {
             _context = context;
             _mapper = mapper;
+            _productRepository = productRepository;
             _response = new ();
         }
 
@@ -29,7 +32,7 @@ namespace MyBusiness_API.Controllers
         {
             try
             {
-                IEnumerable<Product> products = await _context.GetAll();
+                IEnumerable<Product> products = await _productRepository.GetAll();
 
                 _response.Result = _mapper.Map<IEnumerable<Product>>(products);
                 _response.statusCode = HttpStatusCode.OK;
@@ -50,7 +53,7 @@ namespace MyBusiness_API.Controllers
         {
             try
             {
-                var product = await _context.Get(p => p.ProductID == id);
+                var product = await _productRepository.Get(p => p.ProductID == id);
 
                 if (product == null)
                 {
@@ -80,7 +83,7 @@ namespace MyBusiness_API.Controllers
             {
                 var _product = _mapper.Map<Product>(product);  
             
-                await _context.Add(_product);
+                await _productRepository.Add(_product);
                 _response.Result = _product;
                 _response.statusCode = HttpStatusCode.Created;
 
@@ -100,7 +103,7 @@ namespace MyBusiness_API.Controllers
         {
             try
             {
-                var _product = await _context.Get(p => p.ProductID == id);
+                var _product = await _productRepository.Get(p => p.ProductID == id);
 
                 if (_product == null)
                 {
@@ -110,7 +113,7 @@ namespace MyBusiness_API.Controllers
             
                 _product = _mapper.Map<Product>(product);
             
-                _context.Update(_product);
+                _productRepository.Update(_product);
                 _response.statusCode = HttpStatusCode.NoContent;
 
                 return Ok(_response);
@@ -136,7 +139,7 @@ namespace MyBusiness_API.Controllers
                     return BadRequest(_response);
                 }
             
-                var _product = await _context.Get(p => p.ProductID == id);
+                var _product = await _productRepository.Get(p => p.ProductID == id);
 
                 if (_product == null)
                 {
@@ -145,7 +148,7 @@ namespace MyBusiness_API.Controllers
                     return NotFound(_response);
                 }
             
-                _context.Remove(_product);
+                _productRepository.Remove(_product);
                 _response.statusCode = HttpStatusCode.NoContent;
             
                 return Ok(_response);
@@ -157,7 +160,31 @@ namespace MyBusiness_API.Controllers
             }
             
             return BadRequest(_response);
+        }
+
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> PatchProduct(int id, JsonPatchDocument<ProductDto> patchDto)
+        {
+            if (patchDto == null || id == 0)
+                return BadRequest();
             
+            var product = await _productRepository.Get(p => p.ProductID == id);
+            if (product == null)
+                return BadRequest();
+            
+            ProductDto productDto = _mapper.Map<ProductDto>(product);
+            
+            patchDto.ApplyTo(productDto);
+
+            if (!ModelState.IsValid)
+                return BadRequest();
+            
+            Product model = _mapper.Map<Product>(productDto);
+            
+            await _productRepository.Update(model);
+            _response.statusCode = HttpStatusCode.NoContent;
+            
+            return Ok(_response);
         }
     }
 }
