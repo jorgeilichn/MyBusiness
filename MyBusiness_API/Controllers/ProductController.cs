@@ -163,27 +163,27 @@ namespace MyBusiness_API.Controllers
         }
 
         [HttpPatch("{id}")]
-        public async Task<IActionResult> PatchProduct(int id, JsonPatchDocument<ProductDto> patchDto)
+        public async Task<IActionResult> PatchProduct(int id, [FromBody] JsonPatchDocument<ProductDto> patchDto)
         {
             if (patchDto == null || id == 0)
                 return BadRequest();
-            
+
             var product = await _productRepository.Get(p => p.ProductID == id);
             if (product == null)
                 return BadRequest();
-            
+
             ProductDto productDto = _mapper.Map<ProductDto>(product);
-            
-            patchDto.ApplyTo(productDto);
+
+            patchDto.ApplyTo(productDto, ModelState);
 
             if (!ModelState.IsValid)
                 return BadRequest();
-            
+
             Product model = _mapper.Map<Product>(productDto);
-            
+
             await _productRepository.Update(model);
             _response.statusCode = HttpStatusCode.NoContent;
-            
+
             return Ok(_response);
         }
     }

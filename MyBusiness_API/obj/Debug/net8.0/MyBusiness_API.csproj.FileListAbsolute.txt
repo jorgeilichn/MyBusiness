@@ -216,3 +216,5 @@ D:\JORGE.NODA\DESARROLLO\RiderProjects\MyBusiness\MyBusiness_API\obj\Debug\net8.
 D:\JORGE.NODA\DESARROLLO\RiderProjects\MyBusiness\MyBusiness_API\obj\Debug\net8.0\ref\MyBusiness_API.dll
 D:\ILICH.NODA\DESARROLLO\RiderProjects\MyBusiness\MyBusiness_API\bin\Debug\net8.0\Microsoft.AspNetCore.JsonPatch.dll
 D:\ILICH.NODA\DESARROLLO\RiderProjects\MyBusiness\MyBusiness_API\bin\Debug\net8.0\Newtonsoft.Json.dll
+D:\ILICH.NODA\DESARROLLO\RiderProjects\MyBusiness\MyBusiness_API\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+D:\ILICH.NODA\DESARROLLO\RiderProjects\MyBusiness\MyBusiness_API\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
