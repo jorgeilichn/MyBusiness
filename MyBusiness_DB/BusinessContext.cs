@@ -25,7 +25,9 @@ namespace MyBusiness_DB
                 new Brand {BrandId = 2, BrandName = "Bravo", BrandActive = true},
                 new Brand {BrandId = 3, BrandName = "Dos coronas", BrandActive = true},
                 new Brand {BrandId = 4, BrandName = "Gouda", BrandActive = true},
-                new Brand {BrandId = 5, BrandName = "Vima", BrandActive = true});
+                new Brand {BrandId = 5, BrandName = "Vima", BrandActive = true},
+                new Brand {BrandId = 6, BrandName = "La fragua", BrandActive = true},
+                new Brand {BrandId = 7, BrandName = "Sauce", BrandActive = true});
                 
             modelBuilder.Entity<UnitOfMeasurement>().ToTable("UnitOfMeasurement", "store");
             modelBuilder.Entity<UnitOfMeasurement>().HasData(

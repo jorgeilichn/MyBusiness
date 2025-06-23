@@ -3,7 +3,7 @@ using MyBusiness_DB.Models;
 
 namespace MyBusiness_DB.DataTransferObjects
 {
-    public record ProductDto
+    public class ProductDto
     {
         public string ProductName { get; set; }
     

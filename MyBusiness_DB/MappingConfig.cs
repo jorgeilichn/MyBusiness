@@ -9,6 +9,7 @@ namespace MyBusiness_API
         public MappingConfig()
         {
             CreateMap<Product, ProductDto>().ReverseMap();
+            CreateMap<Product, ProductUpdateDto>().ReverseMap();
             CreateMap<Order, OrderDto>().ReverseMap();
             CreateMap<ProductByOrder, ProductByOrderDto>().ReverseMap();
         }

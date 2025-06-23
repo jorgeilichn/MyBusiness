@@ -34,7 +34,7 @@ namespace MyBusiness_API.Controllers
             {
                 IEnumerable<Product> products = await _productRepository.GetAll();
 
-                _response.Result = _mapper.Map<IEnumerable<Product>>(products);
+                _response.Result = _mapper.Map<IEnumerable<Product>>(products).OrderBy(product => product.ProductID);
                 _response.statusCode = HttpStatusCode.OK;
 
                 return Ok(_response);
@@ -99,32 +99,21 @@ namespace MyBusiness_API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutProduct(int id, ProductDto productDto)
+        public async Task<IActionResult> PutProduct(int id, ProductUpdateDto productDto)
         {
-            try
-            {
-                var _product = await _productRepository.Get(product => product.ProductID == id);
-
-                if (_product == null)
-                {
-                    _response.statusCode = HttpStatusCode.NotFound;
-                    return NotFound(_response);
-                }
-            
-                _product = _mapper.Map<Product>(productDto);
-            
-                _productRepository.Update(_product);
-                _response.statusCode = HttpStatusCode.NoContent;
-
-                return Ok(_response);
-            }
-            catch (Exception ex)
+            if (productDto == null || productDto.ProductID != id)
             {
                 _response.IsSuccess = false;
-                _response.ErrorMessages = new List<string>() { ex.Message };
+                _response.statusCode = HttpStatusCode.BadRequest;
+                return BadRequest(_response);
             }
             
-            return BadRequest(_response);
+            Product _product = _mapper.Map<Product>(productDto);
+            
+            _productRepository.Update(_product);
+            _response.statusCode = HttpStatusCode.NoContent;
+
+            return Ok(_response);
         }
 
         [HttpDelete("{id}")]
@@ -166,24 +155,22 @@ namespace MyBusiness_API.Controllers
         public async Task<IActionResult> PatchProduct(int id, [FromBody] JsonPatchDocument<ProductDto> patchDto)
         {
             if (patchDto == null || id == 0)
-                return BadRequest(ModelState);
+                return BadRequest();
 
-            var _product = await _productRepository.Get(product => product.ProductID == id);
-           
+            var _product = await _productRepository.Get(product => product.ProductID == id, tracked:false);
+            
             if (_product == null)
             {
                 _response.IsSuccess = false;
                 _response.statusCode = HttpStatusCode.NotFound;
                 return NotFound(_response);
             }
-
+            
             ProductDto productDto = _mapper.Map<ProductDto>(_product);
 
             patchDto.ApplyTo(productDto, ModelState);
 
-           // if (!ModelState.IsValid)
-           //     return BadRequest(ModelState);
-           if (!TryValidateModel(_product))
+           if (!ModelState.IsValid)
                return BadRequest(ModelState);
 
             Product model = _mapper.Map<Product>(productDto);
